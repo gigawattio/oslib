@@ -26,7 +26,7 @@ func PathExists(path string) (bool, error) {
 // PathBaseName takes a full path and returns the end-most path name - this is the base name!
 // Counter-part of PathDirName.
 func PathBaseName(path string) string {
-	pieces := strings.Split(path, "/")
+	pieces := strings.Split(path, string(os.PathSeparator))
 	baseName := pieces[len(pieces)-1]
 	return baseName
 }
@@ -34,8 +34,8 @@ func PathBaseName(path string) string {
 // PathDirName takes a full path and returns the parent-directory portion of it.
 // Counter-part of PathBaseName.
 func PathDirName(path string) string {
-	pieces := strings.Split(path, "/")
-	dirName := strings.Join(pieces[0:len(pieces)-1], "/")
+	pieces := strings.Split(path, string(os.PathSeparator))
+	dirName := strings.Join(pieces[0:len(pieces)-1], string(os.PathSeparator))
 	return dirName
 }
 
