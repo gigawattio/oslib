@@ -8,7 +8,7 @@
 
 Go (golang) package which provides extended operating-system utility functions.
 
-Created by [Jay Taylor](http://jaytaylor.com/) and used by [Gigawatt](http://gigawatt.io/).
+Created by [Jay Taylor](https://jaytaylor.com/) and used by [Gigawatt](https://gigawatt.io/).
 
 ### Requirements
 
