@@ -42,19 +42,25 @@ func PathDirName(path string) string {
 // IsDirectory returns a boolean indicating if the provided path is a directory.
 func IsDirectory(path string) (bool, error) {
 	fileInfo, err := os.Stat(path)
-	if err != nil {
-		return false, err
+	if err == nil {
+		return fileInfo.IsDir(), nil
 	}
-	return fileInfo.IsDir(), nil
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
 }
 
 // IsRegularFile returns a boolean indicating if the provided path is a regular file.
 func IsRegularFile(path string) (bool, error) {
 	stat, err := os.Stat(path)
-	if err != nil {
-		return false, err
+	if err == nil {
+		return stat.Mode().IsRegular(), nil
 	}
-	return stat.Mode().IsRegular(), nil
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	return false, err
 }
 
 // OsPath returns a fully assembled path string with appropriate OS-specific
